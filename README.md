@@ -1,6 +1,6 @@
 # c-string-functions
 
-Reimplementation of standard C string functions for learning and reinforcement. This is designed to improve my understanding of pointers, null-terminated strings, and low-level memory manipulation in C.
+Reimplementation of standard C string functions for practice. This is designed to improve my understanding of what some of the common string functions do, null-terminated strings, and low-level memory manipulation in C.
 This repo does not rely on string.h -- all string behavior is manually implemented.
 
 ## Implemented Functions
