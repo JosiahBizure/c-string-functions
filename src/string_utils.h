@@ -2,6 +2,7 @@
 #define STRING_UTILS_H
 
 #include <stdlib.h> // size_t, NULL
+#include <string.h> // memcpy, memmove
 
 /*
     Returns the number characters in a given string
@@ -18,7 +19,8 @@ char* my_strcpy(char* dst, const char* src);
 
 /*
     Appends src string to the end of the string pointed
-    to by dst.
+    to by dst. Assumes both dst and src are valid null terminated
+    strings and that dst is large enough to store the result
 */
 char* my_strcat(char* dst, const char* src);
 
@@ -28,6 +30,8 @@ char* my_strcat(char* dst, const char* src);
         1 if s1 > s2
         -1 if s2 > s1
         0 if equal
+
+    Assumes the two strings are valid and null terminated
 */
 int my_strcmp(const char* s1, const char* s2);
 
@@ -42,12 +46,5 @@ char* my_strchr(const char* str, int c);
     if not found
 */
 char* my_strstr(const char* haystack, const char* needle);
-
-/*
-    Tokenizes the given string by breaking it into
-    a series of smaller strings based on the
-    given delimeter. (simplified version)
-*/
-char* my_strtok(char* str, const char* delim);
 
 #endif

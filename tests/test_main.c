@@ -1,42 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "string_utils.h"
 
-size_t my_strlen(const char* str) {
-    if (str == NULL) return -1;
+int main() {
+    char buf1[100] = "Hello";
+    char buf2[100] = "";
+    const char* src = "World";
 
-    size_t len = 0;
-    while (str[len] != '\0') {
-        ++len;
-    }
+    // my_strlen
+    printf("my_strlen(\"Hello\") = %zu\n", my_strlen("Hello"));
+    printf("my_strlen(\"\") = %zu\n", my_strlen(""));
+    printf("my_strlen(NULL) = %zu\n", my_strlen(NULL));
 
-    return len;
-}
+    // my_strcpy
+    my_strcpy(buf2, src);
+    printf("After my_strcpy(buf2, \"World\"): %s\n", buf2);
 
-char* my_strcpy(char* dst, const char* src) {
-    // If nowhere to copy to or nothing to copy return NULL
-    if (dst == NULL || src == NULL) return NULL;
+    // my_strcat
+    my_strcat(buf1, " World");
+    printf("After my_strcat(buf1, \" World\"): %s\n", buf1);
 
-    size_t len = my_strlen(src) + 1; // includes null terminator
+    // my_strcmp
+    printf("my_strcmp(\"abc\", \"abc\") = %d\n", my_strcmp("abc", "abc"));
+    printf("my_strcmp(\"abc\", \"abcd\") = %d\n", my_strcmp("abc", "abcd"));
+    printf("my_strcmp(\"abcd\", \"abc\") = %d\n", my_strcmp("abcd", "abc"));
 
-    // If src and dst overlap a direct copy isn't possible, we'd
-    // be reading and writing the same piece of memory, undefined behavior
-    // Instead I'll create a temp buffer and read from the buffer
-    if (src < dst + len && dst < src + len) {
-        char* temp_buf = (char*)malloc(sizeof(char) * len);
-        if (temp_buf == NULL) return NULL;
-        
-        memcpy(temp_buf, src, len);
-        memcpy(dst, temp_buf, len);
+    // my_strchr
+    char* found = my_strchr("abcdef", 'd');
+    if (found)
+        printf("my_strchr(\"abcdef\", 'd') = %s\n", found);
+    else
+        printf("my_strchr(\"abcdef\", 'd') = NULL\n");
 
-        free(temp_buf);
-        return dst;
-    } else {
-        // Safe to copy directly
-        memcpy(dst, src, len);
-    }
+    // my_strstr
+    char* substr = my_strstr("This is a test string", "test");
+    if (substr)
+        printf("my_strstr(\"This is a test string\", \"test\") = %s\n", substr);
+    else
+        printf("my_strstr(\"This is a test string\", \"test\") = NULL\n");
 
-    return dst;
-}
-
-char* my_strcat(char* dst, const char* src) {
-
+    return 0;
 }
