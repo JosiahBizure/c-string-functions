@@ -1,7 +1,7 @@
 #ifndef STRING_UTILS_H
 #define STRING_UTILS_H
 
-#include <stdlib.h> // size_t
+#include <stdlib.h> // size_t, NULL
 
 /*
     Returns the number characters in a given string
@@ -12,7 +12,7 @@ size_t my_strlen(const char* str);
 
 /*
     Copies a string from src location to dst array
-    Like the real strcpy, no bounds checking is provided
+    Handles overlap between src and dst 
 */
 char* my_strcpy(char* dst, const char* src);
 
